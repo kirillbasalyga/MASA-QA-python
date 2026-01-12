@@ -6,7 +6,7 @@ def get_as_float(data_dict, key):
     except ValueError:
         print('Ошибка: Значение по ключу id нельзя превратить в число!')
     except KeyError:
-        print(f"Ошибка: Значение по ключу amount нельзя превратить в число!")
+        print(f"Ошибка: Ключ 'amount' не найден!")
 
 get_as_float(data, "price")
 get_as_float(data, "id")
