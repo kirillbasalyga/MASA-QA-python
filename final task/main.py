@@ -43,7 +43,7 @@ while True:
                     shapes_db.append(circle)
                     print('Success: Shape added!')
                 case 2:
-                    width, height = map(int, input('Enter width: ').split())
+                    width, height = map(int, input('Enter width and height: ').split())
                     try:
                         width, height = int(width), int(height)
                     except ValueError:
@@ -53,7 +53,7 @@ while True:
                     shapes_db.append(rectangle)
                     print('Success: Shape added!')
                 case 3:
-                    a, b, c = map(int, input('Enter side a: ').split())
+                    a, b, c = map(int, input('Enter sides a, b, c: ').split())
                     try:
                         a, b, c = int(a), int(b), int(c)
                     except ValueError:
@@ -62,5 +62,50 @@ while True:
                     triangle = Triangle(color, a, b, c)
                     shapes_db.append(triangle)
                     print('Success: Shape added!')
+        case 2:
+            if not shapes_db:
+                print( f"\nList is empty\n")
+            else:
+                print(f'\n---------- ALL SHAPES ----------\n')
+                for index, shape in enumerate(shapes_db, start=1):
+                    print (f'{index}. {shape}')
+        case 3:
+            if not shapes_db:
+                print(f"\nList is empty\n")
+            else:
+                print(f'---------- SHAPE DETAILS ----------')
+                idx = get_valid_index(input('Enter shape number: '), len(shapes_db))
+                shape = shapes_db[idx]
+                print(f'------------------------------')
+                print(f'Info: {shape}')
+                print(f'Area: {shape.get_area():.2f}')
+                print(f'Perimeter: {shape.get_perimeter():.2f}')
+                print(f'------------------------------')
+        case 4:
+             if not shapes_db:
+                print(f"\nList is empty\n")
+             else:
+                 print(f'---------- REMOVE SHAPE ----------')
+                 idx = get_valid_index(input('Enter shape number: '), len(shapes_db))
+                 removed = shapes_db.pop(idx)
+                 print(f'Success: Removed {removed}')
+        case 5:
+            if not shapes_db:
+                print(f"\nList is empty\n")
+            else:
+                total = sum(s.get_area() for s in shapes_db)
+                print(f'\nTotal areas of {len(shapes_db)} shapes: {total}\n')
+        case 6:
+            if not shapes_db:
+                print(f"\nList is empty\n")
+            else:
+                total = sum(s.get_perimeter() for s in shapes_db)
+                print(f'\nTotal Perimeter of {len(shapes_db)} shapes: {total}\n')
+        case 7:
+            print('Goodbye!')
+            break
+
+
+
 
 
