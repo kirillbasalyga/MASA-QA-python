@@ -38,7 +38,7 @@ while True:
             color = input('Enter color: ')
             match figur:
                 case 1:
-                    radius = get_valid_float(input('Enter radius: '))
+                    radius = get_valid_float('Enter radius: ')
                     circle = Circle(color, radius)
                     shapes_db.append(circle)
                     print('Success: Shape added!')
