@@ -4,9 +4,8 @@ class Circle(Shape):
     def __init__(self, color, radius) -> None:
         super().__init__(color)
         if radius <= 0:
-            print('radius must be positive')
-        else:
-            self._radius = radius
+            raise ValueError(f'\nradius must be positive\n')
+        self._radius = radius
     def get_area(self):
         return math.pi * self._radius**2
     def get_perimeter(self):
