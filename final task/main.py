@@ -1,6 +1,7 @@
 from shapes import Circle, Rectangle, Triangle
 from utils import get_valid_float, get_valid_index
-import json
+# import json
+import pickle
 
 def menu():
    print('1.Add new shape')
@@ -11,6 +12,7 @@ def menu():
    print('6.Show sum of all perimeters')
    print('7.Exit')
    print('8.Save to file')
+   print('9. Load from file')
    print('10. ADD preset figures')
 
 shapes_db = []
@@ -18,13 +20,13 @@ shapes_db = []
 def main():
     while True:
         menu()
-        choice = input("Enter your choice (1-9): ")
+        choice = input("Enter your choice (1-10): ")
         try:
             choice = int(choice)
         except ValueError:
             print('Invalid choice')
             continue
-        if choice < 1 or choice > 9:
+        if choice < 1 or choice > 10:
             print('Invalid choice')
             continue
         try:
@@ -113,19 +115,13 @@ def main():
                     print('Goodbye!')
                     break
                 case 8:
-                   with open('shapes.json', 'w') as f:
-                     json.dump(shapes_db, f, default=lambda o: o.__dict__, indent=4)
-                # case 9:
-                #     with open('shapes.json', 'r') as f:
-                #         data = json.load(f)
-                #         loaded_shapes = [Circle(**d) for d in data]
-                #     with open('shapes.json', 'r') as f:
-                #         data = json.load(f)
-                #         loaded_shapes += [Rectangle(**d) for d in data]
-                #     with open('shapes.json', 'r') as f:
-                #         data = json.load(f)
-                #         loaded_shapes += [Triangle(**d) for d in data]
-                #     shapes_db = loaded_shapes
+                    with open('shape.pickle', 'wb') as f:
+                        pickle.dump(shapes_db, f)
+                case 9:
+                    with open('shape.pickle', 'rb') as f:
+                        shapes_db1 = pickle.load(f)
+                        for shape in shapes_db1:
+                            print(f'{shape}')
 
                 case 10:
                     circle = Circle("blue", 5.0)
